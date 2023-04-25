@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { Post } from './Post'
+import './global.css';
+import { Header } from './components/Header';
 
-//Ultima aula assistida = "Propriedades" ultima do modulo 1
+//Ultima aula assistida = "Componente: Header" -modulo 2
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+    <Header/>
       <Post
         author="Matheus" 
         content="Apenas um teste do componente, post numero 1"
