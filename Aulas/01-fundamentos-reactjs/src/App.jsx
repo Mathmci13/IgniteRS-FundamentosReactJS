@@ -4,7 +4,7 @@ import styles from './App.module.css';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 
-//Ultima aula assistida = "Componente: Header" -modulo 2
+//Ultima aula assistida = "Finalizando Sidebar" -modulo 2
 function App() {
 
   return (
