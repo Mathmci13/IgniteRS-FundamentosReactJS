@@ -1,23 +1,28 @@
-import { useState } from 'react'
 import { Post } from './Post'
 import './global.css';
+import styles from './App.module.css';
 import { Header } from './components/Header';
+import { Sidebar } from './components/Sidebar';
 
 //Ultima aula assistida = "Componente: Header" -modulo 2
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
     <Header/>
-      <Post
-        author="Matheus" 
-        content="Apenas um teste do componente, post numero 1"
-      />
-      <Post
-        author="Matheus C." 
-        content="Apenas um teste do componente, post numero 2"
-      />
+    <div className={styles.wrapper}>
+      <Sidebar/>
+      <main>
+        <Post
+          author="Matheus Chagas"
+          content="Apenas um teste do componente de Post!"
+        />
+        <Post
+          author="Diego da RocketSeat"
+          content="Não confundir com o Diego do RocketLeague "
+        />
+      </main>
+      </div>
     </>
   )
 }
