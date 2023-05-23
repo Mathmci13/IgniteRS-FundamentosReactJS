@@ -1,8 +1,9 @@
-import { Post } from './Post'
-import './global.css';
-import styles from './App.module.css';
-import { Header } from './components/Header';
+import { Post } from './components/Post'
 import { Sidebar } from './components/Sidebar';
+import { Header } from './components/Header';
+
+import styles from './App.module.css';
+import './global.css';
 
 //Ultima aula assistida = "Finalizando Sidebar" -modulo 2
 function App() {
@@ -13,14 +14,8 @@ function App() {
     <div className={styles.wrapper}>
       <Sidebar/>
       <main>
-        <Post
-          author="Matheus Chagas"
-          content="Apenas um teste do componente de Post!"
-        />
-        <Post
-          author="Diego da RocketSeat"
-          content="Não confundir com o Diego do RocketLeague "
-        />
+        <Post/>
+        <Post/>
       </main>
       </div>
     </>
