@@ -5,7 +5,7 @@ import { Header } from './components/Header';
 import styles from './App.module.css';
 import './global.css';
 
-//Ultima aula assistida = "Estilizaçao do Comentário" -modulo 2
+//Ultima aula assistida = "Aplicando Responsividade" -modulo 2
 function App() {
 
   return (
