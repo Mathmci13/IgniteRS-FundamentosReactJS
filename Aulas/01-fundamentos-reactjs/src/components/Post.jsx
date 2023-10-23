@@ -1,43 +1,66 @@
-import { Avatar } from './Avatar';
-import { Comment } from './Comment';
-import styles from './Post.module.css';
+import { format, formatDistanceToNow } from "date-fns";
+import { Avatar } from "./Avatar";
+import { Comment } from "./Comment";
+import styles from "./Post.module.css";
+import { ptBR } from "date-fns/locale";
 
-export const Post = () => {
+export const Post = (props) => {
+  const publishedDateFormatted = format(
+    props.publishedAt,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    {
+      locale: ptBR,
+    }
+  );
+
+  const publishedDateRelativeToNow = formatDistanceToNow(props.publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
   return (
-      <article className={styles.post}>
-        <header>
+    <article className={styles.post}>
+      <header>
         <div className={styles.author}>
-          {/* <img className={styles.avatar} src='https://github.com/Mathmci13.png'/> */}
-          <Avatar src='https://github.com/Mathmci13.png'/>
+          <Avatar src={props.author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>Matheus Chagas</strong> 
-              <span>Web Developer</span>
+            <strong>{props.author.name}</strong>
+            <span>{props.author.role}</span>
           </div>
         </div>
 
-        <time title='22 de maio às 21:14' dateTime='2023-05-22'>Publicado há 1h</time>
-        </header>
-        <div className={styles.content}>
-          <p>Esse é o novo post! </p>
-          <p>Treinando react do 0 com o RocketSeat</p>
-          <a>É isso aí!</a>
-          <a>#VemComNois</a>
-          </div>
+        <time
+          title={publishedDateFormatted}
+          dateTime={props.publishedAt.toISOString()}
+        >
+          {publishedDateRelativeToNow}
+        </time>
+      </header>
+      <div className={styles.content}>
+        {props.content.map((line) => {
+          if (line.type === "paragraph") {
+            return <p>{line.content}</p>;
+          } else if (line.type === "link") {
+            return (
+              <p>
+                <a href="#">{line.content}</a>
+              </p>
+            );
+          }
+        })}
+      </div>
 
-          <form className={styles.commentForm}>
-          <strong>Deixe seu feeedback</strong>
-            <textarea
-              placeholder='Deixe um comentário'
-            />
-            <footer>
-              <button type='submit'>Publicar</button>
-            </footer>
-          </form>
-          <div className={styles.commentList}>
-            <Comment/>
-            <Comment/>
-            <Comment/>
-          </div>
-      </article>
-  )
-}
+      <form className={styles.commentForm}>
+        <strong>Deixe seu feeedback</strong>
+        <textarea placeholder="Deixe um comentário" />
+        <footer>
+          <button type="submit">Publicar</button>
+        </footer>
+      </form>
+      <div className={styles.commentList}>
+        <Comment />
+        <Comment />
+        <Comment />
+      </div>
+    </article>
+  );
+};
