@@ -3,8 +3,11 @@ import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 import { ptBR } from "date-fns/locale";
+import { useState } from "react";
 
+const comments = [1, 2, 3];
 export const Post = (props) => {
+  const [comments,setComments] = useState([1,2])
   const publishedDateFormatted = format(
     props.publishedAt,
     "d 'de' LLLL 'às' HH:mm'h'",
@@ -12,6 +15,12 @@ export const Post = (props) => {
       locale: ptBR,
     }
   );
+
+  function handleCreateNewComment(){
+    event.preventDefault()
+
+    setComments([...comments, comments.length + 1])
+  }
 
   const publishedDateRelativeToNow = formatDistanceToNow(props.publishedAt, {
     locale: ptBR,
@@ -49,7 +58,7 @@ export const Post = (props) => {
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feeedback</strong>
         <textarea placeholder="Deixe um comentário" />
         <footer>
@@ -57,9 +66,9 @@ export const Post = (props) => {
         </footer>
       </form>
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map((comment) => {
+          return <Comment />;
+        })}
       </div>
     </article>
   );
