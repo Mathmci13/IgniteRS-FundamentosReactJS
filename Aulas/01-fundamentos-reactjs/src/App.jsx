@@ -43,7 +43,7 @@ const posts = [
     publishedAt: new Date("2023-10-22 22:00:00"),
   },
 ];
-//Ultima aula assistida = "Estado (useState)" -modulo 3
+//Ultima aula assistida = "Inserindo comentários (Programação declarativa)" -modulo 3
 export function App() {
   return (
     <>
