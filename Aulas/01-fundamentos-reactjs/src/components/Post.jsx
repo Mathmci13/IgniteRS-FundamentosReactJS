@@ -28,6 +28,13 @@ export const Post = (props) => {
   function handleNewCommentChange() {
     setNewCommentText(event.target.value);
   }
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeletedOne = comments.filter (comment => {
+      return comment !== commentToDelete;
+    })
+    setComments(commentsWithoutDeletedOne);
+  }
+
   const publishedDateRelativeToNow = formatDistanceToNow(props.publishedAt, {
     locale: ptBR,
     addSuffix: true,
@@ -53,10 +60,10 @@ export const Post = (props) => {
       <div className={styles.content}>
         {props.content.map((line) => {
           if (line.type === "paragraph") {
-            return <p>{line.content}</p>;
+            return <p key={line.content}>{line.content}</p>;
           } else if (line.type === "link") {
             return (
-              <p>
+              <p key={line.content}>
                 <a href="#">{line.content}</a>
               </p>
             );
@@ -77,7 +84,13 @@ export const Post = (props) => {
       </form>
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment content={comment} />;
+          return (
+            <Comment
+              onDeleteComment={deleteComment}
+              key={comment}
+              content={comment}
+            />
+          );
         })}
       </div>
     </article>

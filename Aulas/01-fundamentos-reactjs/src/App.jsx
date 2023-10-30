@@ -43,7 +43,7 @@ const posts = [
     publishedAt: new Date("2023-10-22 22:00:00"),
   },
 ];
-//Ultima aula assistida = "Inserindo comentários (Programação declarativa)" -modulo 3
+//Ultima aula assistida = "Removendo comentários (imutabilidade)" -modulo 3
 export function App() {
   return (
     <>
@@ -54,6 +54,7 @@ export function App() {
           {posts.map((post) => {
             return (
               <Post
+                key={post.id}
                 author={post.author}
                 content={post.content}
                 publishedAt={post.publishedAt}
