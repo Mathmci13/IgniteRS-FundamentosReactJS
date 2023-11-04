@@ -43,7 +43,7 @@ const posts = [
     publishedAt: new Date("2023-10-22 22:00:00"),
   },
 ];
-//Ultima aula assistida = "Removendo comentários (imutabilidade)" -modulo 3
+//Ultima aula assistida = "Entendendo closures no React" - fim do modulo 3
 export function App() {
   return (
     <>
